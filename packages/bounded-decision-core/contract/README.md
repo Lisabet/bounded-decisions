@@ -60,7 +60,7 @@ Default returned-model acceptance requires an exact match. An existing consumer 
 
 ## Choose the runtime
 
-Python `decision-kit 0.1.2rc2` provides provider registration, budget admission, a batch CLI, atomic receipts and resume. TypeScript `bounded-decision-core` provides neutral validation, provider selection and local evaluation. `jev-decision-core` supplies a single Jev transport operation and its adapter. An embedded application's runner supplies durable pending outcomes, attempt identities, budgets and reconciliation.
+Python `decision-kit 0.1.2rc3` provides provider registration, budget admission, a batch CLI, atomic receipts and resume. TypeScript `bounded-decision-core` provides neutral validation, provider selection and local evaluation. `jev-decision-core` supplies a single Jev transport operation and its adapter. An embedded application's runner supplies durable pending outcomes, attempt identities, budgets and reconciliation.
 
 The bundled JSON schemas describe the wire request and operation record. Their canonical copies and synthetic response matrix live here. Each runtime bundles byte-identical copies so installed packages carry the contract. Shared fixtures test the same provider responses and expected records in both runtimes.
 
@@ -124,7 +124,7 @@ Persist the pending identity before the call, then atomically store the final re
 
 ## Verify and integrate
 
-From `packages/decision-kit`, run `python -m pytest tests -p no:cacheprovider`. From `packages/jev-decision-core`, run `npm test` on Node 24.16+. The fixture matrix includes success, optional observations, unknown/zero/invalid charges, HTTP errors, malformed JSON, wrong model/choice, invalid confidence/probabilities/usage, timeouts and unusual question IDs. All provider responses and amounts are synthetic; calls and spending in these tests are zero.
+From `packages/decision-kit`, run `python -m pytest tests -p no:cacheprovider`. From `packages/jev-decision-core`, run `npm test` on Node 24.x (24.16 or newer). The fixture matrix includes success, optional observations, unknown/zero/invalid charges, HTTP errors, malformed JSON, wrong model/choice, invalid confidence/probabilities/usage, timeouts and unusual question IDs. All provider responses and amounts are synthetic; calls and spending in these tests are zero.
 
 `scripts/check_decision_contract.ps1` validates the schemas, rejects contradictory records and checks bundled copies. Before adoption, test the actual consumer's saved-outcome parity, pending recovery and zero-call resume. Live model-quality checks use their own authorized cohort and budget. Choose the public package scope, license and exact release text before publication.
 

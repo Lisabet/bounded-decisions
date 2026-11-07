@@ -18,7 +18,7 @@ python packages/decision-contract/examples/python_app.py
 
 The synthetic example prints an accepted delivery-routing result for each of two injected adapters. Provider calls: zero.
 
-Node 24.16+ can run the TypeScript example directly from this checkout:
+Node 24.x (24.16 or newer) can run the TypeScript example directly from this checkout:
 
 ```sh
 node packages/decision-contract/examples/typescript_app.ts

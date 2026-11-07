@@ -1,6 +1,6 @@
 # Jev decision core — 0.1.0-candidate.3
 
-Typed TypeScript transport for the Jev decisions protocol, for Node 24.16+.
+Typed TypeScript transport for the Jev decisions protocol, for Node 24.x (24.16 or newer).
 The module has zero runtime dependencies. Run `npm test` for the offline synthetic conformance fixtures.
 
 ## Integration

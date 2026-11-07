@@ -17,7 +17,7 @@
     },
     {
       "path": "contract/README.md",
-      "sha256": "16324e32d4edb90256c704fcb9790b884c833315c848a2215d61700968ee180a"
+      "sha256": "c0e547bf039f2a41c5c673dba7d962a87cb7bbb4da1f3a72dc42f54d7f5cfad7"
     },
     {
       "path": "contract/record.schema.json",
@@ -49,7 +49,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "14f187527120db449744fc9164b8a1ac7ee02b01634283e4e88060d2bfce5476"
+      "sha256": "b4b3fbe585d9b1cd7df231b1b877cfd29a4706405f9b6320e545e8c8dc1d5702"
     },
     {
       "path": "src/index.ts",

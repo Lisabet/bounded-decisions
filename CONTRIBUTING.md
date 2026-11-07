@@ -1,6 +1,6 @@
 # Contributing
 
-Use Python 3.10+ and Node 24.16+. From the repository root:
+Use Python 3.10+ and Node 24.x (24.16 or newer). From the repository root:
 
 ```sh
 python -m pip install ./packages/decision-kit pytest

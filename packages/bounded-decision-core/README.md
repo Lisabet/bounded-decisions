@@ -1,6 +1,6 @@
 # Bounded decision core
 
-Connect an application's prepared finite-choice task to an explicitly selected provider adapter. The core validates the common operation record and applies the application's local acceptance profile. It uses native Node TypeScript on Node 24.16+ and carries zero runtime dependencies.
+Connect an application's prepared finite-choice task to an explicitly selected provider adapter. The core validates the common operation record and applies the application's local acceptance profile. It uses native Node TypeScript on Node 24.x (24.16 or newer) and carries zero runtime dependencies.
 
 Read the [shared contract](contract/README.md) for roles, fields, accounting and recovery. Use the [Jev adapter](../jev-decision-core/README.md) for the current concrete provider transport.
 

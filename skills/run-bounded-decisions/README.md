@@ -24,7 +24,7 @@ python -m pip install ./packages/decision-kit
 
 The Python package offers `execute_task`, `evaluate_record` and `make_jev_adapter` through `decision_kit.universal`. Its existing batch command is described in the [Python README](../../packages/decision-kit/README.md). A default CLI run saves a plan with zero provider operations.
 
-For Node 24.16+, copy `packages/bounded-decision-core` and `packages/jev-decision-core` into sibling directories in the application's vendor folder. Import the source files there. The [TypeScript core README](../../packages/bounded-decision-core/README.md) explains the registry and module boundary. The [offline examples](../../packages/decision-contract/examples/) demonstrate both entry points with injected synthetic adapters.
+For Node 24.x (24.16 or newer), copy `packages/bounded-decision-core` and `packages/jev-decision-core` into sibling directories in the application's vendor folder. Import the source files there. The [TypeScript core README](../../packages/bounded-decision-core/README.md) explains the registry and module boundary. The [offline examples](../../packages/decision-contract/examples/) demonstrate both entry points with injected synthetic adapters.
 
 ## Configure the application boundary
 
