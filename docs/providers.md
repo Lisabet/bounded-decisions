@@ -45,7 +45,7 @@ const registry = new Map([[provider, makeJevAdapter({
 
 This setup prepares an adapter. Your runner decides when to call `executeTask`. The transport sends one POST with Bearer authorization and JSON fields `model`, `state` and `questions`; each question contains `type`, `instructions` and `criteria`. It checks returned question/choice/model identities and preserves safe failure metadata. Verify these requirements against the service's documented API and saved responses.
 
-The provider identifier `plusvibe` enables observed RUB billing from the `x-pv-cost-rub` response header. For another identifier, the shipped adapter returns `billing: null` and `billing_state: "unknown"`, and the core routes the outcome to review. Implement the service's own billing mapping in its adapter, including charged failures. Record actual amount, currency and evidence source; keep tariff-based estimates in `estimate`.
+The provider identifier `plusvibe` enables observed RUB billing from the `x-pv-cost-rub` response header. For another identifier, the shipped adapter returns `billing: null` and `billing_state: "unknown"`. A successful response with unknown billing requires review; known operation errors remain rejected, and pending attempts require reconciliation. Implement the service's own billing mapping in its adapter, including charged failures. Record actual amount, currency and evidence source; keep tariff-based estimates in `estimate`.
 
 Python's supplied `PlusVibeAdapter` enforces `provider="plusvibe"` and its RUB accounting. For a different service, register your own provider adapter in the Python API or implement the neutral interface below. Provider identity and accounting provenance should identify the service actually used.
 
