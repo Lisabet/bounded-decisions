@@ -1,0 +1,26 @@
+{
+  "name": "jev-decision-core",
+  "version": "0.1.0-candidate.3",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.16.0"
+  },
+  "exports": {
+    ".": "./src/jev.ts",
+    "./contract": "./src/contract.ts",
+    "./contract/schema": "./contract/record.schema.json",
+    "./adapter": "./src/adapter.ts"
+  },
+  "files": [
+    "src",
+    "tests",
+    "README.md",
+    "MANIFEST.json",
+    "contract"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.ts"
+  },
+  "license": "MIT"
+}

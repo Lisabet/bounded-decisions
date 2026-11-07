@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run bounded decisions"
+  short_description: "Evidence-based choices with limits and durable receipts"
+  default_prompt: "Use $run-bounded-decisions to prepare a bounded decision run and verify its receipts."

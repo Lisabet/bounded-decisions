@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Explicit provider and model selection",
+  "required": [
+    "provider",
+    "model"
+  ],
+  "properties": {
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "returned_model_policy": {
+      "enum": [
+        "exact",
+        "any_nonempty"
+      ]
+    }
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bounded decision operation record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "provider",
+    "requested_model",
+    "returned_model",
+    "status",
+    "answers",
+    "usage",
+    "billing",
+    "billing_state",
+    "estimate",
+    "receipt",
+    "uncertain",
+    "error"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "bounded-decisions/1"
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "returned_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error",
+        "pending"
+      ]
+    },
+    "answers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "choice"
+        ],
+        "properties": {
+          "type": {
+            "const": "choice"
+          },
+          "choice": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "probabilities": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    },
+    "usage": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "input_tokens": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "output_tokens": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        }
+      ]
+    },
+    "billing": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency",
+            "source"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "billing_state": {
+      "enum": [
+        "observed",
+        "unknown",
+        "invalid"
+      ]
+    },
+    "estimate": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency",
+            "source"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "reused"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reused": {
+          "type": "boolean"
+        }
+      }
+    },
+    "uncertain": {
+      "type": "boolean"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "http_status"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "route",
+                "input_limit",
+                "body_limit",
+                "http",
+                "invalid_response",
+                "timeout",
+                "transport"
+              ]
+            },
+            "http_status": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 100,
+              "maximum": 599
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "returned_model": {
+            "type": "string",
+            "minLength": 1
+          },
+          "answers": {
+            "minProperties": 1
+          },
+          "error": {
+            "type": "null"
+          },
+          "uncertain": {
+            "const": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "returned_model": {
+            "type": "null"
+          },
+          "answers": {
+            "maxProperties": 0
+          },
+          "usage": {
+            "type": "null"
+          },
+          "error": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "pending"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "uncertain": {
+            "const": true
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "uncertain": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "billing_state": {
+            "const": "observed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "billing": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "billing": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "reused": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

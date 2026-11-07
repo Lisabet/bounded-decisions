@@ -1,0 +1,12 @@
+* text=auto
+*.md text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+LICENSE text eol=lf
+*.zip binary
+
+# Canonical bytes for portable decision contracts and manifests.
+packages/** text eol=lf
+skills/run-bounded-decisions/** text eol=lf
+scripts/check_decision_contract.ps1 text eol=lf

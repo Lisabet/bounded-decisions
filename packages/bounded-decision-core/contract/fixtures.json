@@ -1,0 +1,1638 @@
+{
+  "contract_version": "bounded-decisions/1",
+  "provenance": "Synthetic offline provider responses; fabricated billing amounts.",
+  "cases": [
+    {
+      "id": "ok",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": "fixture/model",
+        "status": "ok",
+        "answers": {
+          "q": {
+            "type": "choice",
+            "choice": "a"
+          }
+        },
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 4
+        },
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      }
+    },
+    {
+      "id": "zero",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": "fixture/model",
+        "status": "ok",
+        "answers": {
+          "q": {
+            "type": "choice",
+            "choice": "a"
+          }
+        },
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 4
+        },
+        "billing": {
+          "amount": 0.0,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      }
+    },
+    {
+      "id": "unknown-cost",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {},
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": "fixture/model",
+        "status": "ok",
+        "answers": {
+          "q": {
+            "type": "choice",
+            "choice": "a"
+          }
+        },
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 4
+        },
+        "billing": null,
+        "billing_state": "unknown",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      }
+    },
+    {
+      "id": "invalid-cost",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "broken"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "optional-observations",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a",
+              "confidence": 0.8,
+              "probabilities": {
+                "a": 0.8,
+                "insufficient": 0.2
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": "fixture/model",
+        "status": "ok",
+        "answers": {
+          "q": {
+            "type": "choice",
+            "choice": "a",
+            "confidence": 0.8,
+            "probabilities": {
+              "a": 0.8,
+              "insufficient": 0.2
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 4
+        },
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      }
+    },
+    {
+      "id": "http-charged",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 503,
+        "headers": {
+          "x-pv-cost-rub": "0.03"
+        },
+        "body": "private body is discarded"
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.03,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "http",
+          "http_status": 503
+        }
+      }
+    },
+    {
+      "id": "http-zero",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 503,
+        "headers": {
+          "x-pv-cost-rub": "0"
+        },
+        "body": "private body is discarded"
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.0,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "http",
+          "http_status": 503
+        }
+      }
+    },
+    {
+      "id": "http-unknown",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 503,
+        "headers": {},
+        "body": "private body is discarded"
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "unknown",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "http",
+          "http_status": 503
+        }
+      }
+    },
+    {
+      "id": "http-invalid",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 503,
+        "headers": {
+          "x-pv-cost-rub": "broken"
+        },
+        "body": "private body is discarded"
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "http",
+          "http_status": 503
+        }
+      }
+    },
+    {
+      "id": "json-charged",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": "malformed private response"
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "wrong-model",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "other",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "wrong-choice",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "other"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "bad-confidence",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a",
+              "confidence": 2
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "bad-probabilities",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a",
+              "probabilities": {
+                "a": 0.3,
+                "insufficient": 0.3
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "bad-usage",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": -1,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "timeout",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {},
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": "timeout",
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "pending",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "unknown",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": true,
+        "error": {
+          "code": "timeout",
+          "http_status": null
+        }
+      }
+    },
+    {
+      "id": "transport",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {},
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": "transport",
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "pending",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "unknown",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": true,
+        "error": {
+          "code": "transport",
+          "http_status": null
+        }
+      }
+    },
+    {
+      "id": "billing-hex",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0x10"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "billing-underscore",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "1_000"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "billing-empty",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": " "
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "billing-negative",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "-1"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "billing-nonfinite",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "NaN"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "billing-overflow",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "1e999"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "unsafe-token-integer",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 9007199254740992,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "null-confidence",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a",
+              "confidence": null
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "null-probabilities",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "q": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "q": {
+              "choice": "a",
+              "probabilities": null
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "invalid_response",
+          "http_status": 200
+        }
+      }
+    },
+    {
+      "id": "special-question-id",
+      "request": {
+        "model": "fixture/model",
+        "state": {
+          "label": "Synthetic container 500 ml"
+        },
+        "questions": {
+          "__proto__": {
+            "type": "choice",
+            "instructions": "Choose by the supplied label.",
+            "criteria": {
+              "a": "Volume measure",
+              "insufficient": "Missing facts"
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "x-pv-cost-rub": "0.01"
+        },
+        "body": {
+          "model": "fixture/model",
+          "answers": {
+            "__proto__": {
+              "choice": "a"
+            }
+          },
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 4
+          }
+        }
+      },
+      "transport_error": null,
+      "expected": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "plusvibe",
+        "requested_model": "fixture/model",
+        "returned_model": "fixture/model",
+        "status": "ok",
+        "answers": {
+          "__proto__": {
+            "type": "choice",
+            "choice": "a"
+          }
+        },
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 4
+        },
+        "billing": {
+          "amount": 0.01,
+          "currency": "RUB",
+          "source": "PlusVibe x-pv-cost-rub response header"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "fixture-attempt",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      }
+    }
+  ]
+}

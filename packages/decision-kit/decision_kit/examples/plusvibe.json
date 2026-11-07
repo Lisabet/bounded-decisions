@@ -1,0 +1,18 @@
+{
+  "provider": "plusvibe",
+  "model": "typesafe/jev-1.13",
+  "task_capabilities": [
+    "choice"
+  ],
+  "limits": {
+    "request_bytes": 100000,
+    "questions": 20
+  },
+  "pricing": {
+    "currency": "RUB",
+    "input_per_million": 7.4,
+    "output_per_million": 0,
+    "provenance": "PlusVibe typesafe/jev-1.13; https://gw.plusvibeapi.ru/models; verified 2026-11-07"
+  },
+  "timeout": 60
+}

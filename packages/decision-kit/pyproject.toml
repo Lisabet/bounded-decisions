@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "decision-kit"
+version = "0.1.2rc3"
+description = "Provider-neutral bounded choice decisions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.scripts]
+decision-kit = "decision_kit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["decision_kit*", "decision_model*"]
+
+[tool.setuptools]
+py-modules = ["cmd_decision_model"]
+
+[tool.setuptools.package-data]
+"decision_kit.examples" = ["*.json"]
+"decision_kit.contract_data" = ["*.json", "*.md"]

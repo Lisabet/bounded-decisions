@@ -1,0 +1,33 @@
+name: Bounded decisions
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24.16.0'
+      - run: python -m pip install ./packages/decision-kit pytest==9.1.1
+      - run: python -m pytest packages/decision-kit/tests -p no:cacheprovider
+      - run: python packages/decision-contract/examples/python_app.py
+      - run: node packages/decision-contract/examples/typescript_app.ts
+      - run: npm test
+        working-directory: packages/bounded-decision-core
+      - run: npm test
+        working-directory: packages/jev-decision-core
+      - name: Validate shared schemas and bundled copies
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/check_decision_contract.ps1

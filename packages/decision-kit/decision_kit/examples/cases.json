@@ -1,0 +1,25 @@
+[
+  {
+    "case_id": "item-classification-001",
+    "state": {
+      "description": "A reusable container with a stated capacity of 500 ml.",
+      "label": "Capacity: 500 ml"
+    },
+    "question": {
+      "type": "choice",
+      "instructions": "Choose the best supported category from the supplied facts.",
+      "criteria": {
+        "volume": "The stated measurement is a volume.",
+        "mass": "The stated measurement is a mass.",
+        "insufficient": "The supplied facts do not support a choice."
+      }
+    },
+    "expected": "volume",
+    "dependencies": {
+      "input-record": "sample-001-v1",
+      "rules": "classification-rules-v2"
+    },
+    "rules_version": "2",
+    "cohort": "illustrative-classification"
+  }
+]

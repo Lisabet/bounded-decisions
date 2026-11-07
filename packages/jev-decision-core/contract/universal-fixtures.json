@@ -1,0 +1,1343 @@
+{
+  "task_version": "bounded-task/1",
+  "cases": [
+    {
+      "id": "known-zero",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    },
+    {
+      "id": "known-positive",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0.03,
+          "currency": "RUB",
+          "source": "Synthetic observed charge"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    },
+    {
+      "id": "unknown-billing",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": null,
+        "billing_state": "unknown",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "billing_unknown"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "invalid-billing",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": null,
+        "billing_state": "invalid",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "billing_invalid"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "abstention",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "hold",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "abstained:route"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "confidence-below",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "minimum_confidence": 0.95
+      },
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "confidence_below_minimum:route"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "confidence-bypass",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "minimum_confidence": 0.95,
+        "bypass_confidence_choices": {
+          "route": [
+            "alpha"
+          ]
+        }
+      },
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    },
+    {
+      "id": "confidence-missing",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "require_confidence": true
+      },
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "confidence_required:route"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "probabilities-missing",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "require_probabilities": true
+      },
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "probabilities_required:route"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "usage-missing",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": null,
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "require_usage": true
+      },
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "usage_required"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "quality-match",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "expected_choices": {
+          "route": "alpha"
+        }
+      },
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": {
+          "matched": true,
+          "questions": {
+            "route": true
+          }
+        }
+      }
+    },
+    {
+      "id": "quality-mismatch",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "expected_choices": {
+          "route": "beta"
+        }
+      },
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": {
+          "matched": false,
+          "questions": {
+            "route": false
+          }
+        }
+      }
+    },
+    {
+      "id": "explicit-model-alias",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model",
+        "returned_model_policy": "any_nonempty"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "alias",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    },
+    {
+      "id": "reused-historical-charge",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0.05,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": true
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    },
+    {
+      "id": "charged-error",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": null,
+        "status": "error",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.03,
+          "currency": "RUB",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": {
+          "code": "http",
+          "http_status": 503
+        }
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "rejected",
+        "issues": [
+          "operation_error"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "charged-pending",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": null,
+        "status": "pending",
+        "answers": {},
+        "usage": null,
+        "billing": {
+          "amount": 0.03,
+          "currency": "RUB",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": true,
+        "error": {
+          "code": "transport",
+          "http_status": null
+        }
+      },
+      "policy": {},
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "operation_pending"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "unusual-question-id",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "__proto__": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "__proto__": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "expected_choices": {
+          "__proto__": "alpha"
+        }
+      },
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": {
+          "matched": true,
+          "questions": {
+            "__proto__": true
+          }
+        }
+      }
+    },
+    {
+      "id": "minimum-confidence-requires-observation",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "minimum_confidence": 0.8
+      },
+      "expected_evaluation": {
+        "status": "review",
+        "issues": [
+          "confidence_required:route"
+        ],
+        "quality": null
+      }
+    },
+    {
+      "id": "empty-local-quality",
+      "task": {
+        "task_version": "bounded-task/1",
+        "task_id": "synthetic-1",
+        "rules_version": "synthetic-rules/1",
+        "state": {
+          "text": "A prepared synthetic fact"
+        },
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose the matching route.",
+            "criteria": {
+              "alpha": "First route",
+              "beta": "Second route",
+              "hold": "Request human review"
+            },
+            "abstain_choice": "hold"
+          }
+        }
+      },
+      "selection": {
+        "provider": "fixture",
+        "model": "synthetic/model"
+      },
+      "record": {
+        "contract_version": "bounded-decisions/1",
+        "provider": "fixture",
+        "requested_model": "synthetic/model",
+        "returned_model": "synthetic/model",
+        "status": "ok",
+        "answers": {
+          "route": {
+            "type": "choice",
+            "choice": "alpha",
+            "confidence": 0.9,
+            "probabilities": {
+              "alpha": 1,
+              "beta": 0,
+              "hold": 0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 4,
+          "output_tokens": 2
+        },
+        "billing": {
+          "amount": 0,
+          "currency": "USD",
+          "source": "Synthetic observation"
+        },
+        "billing_state": "observed",
+        "estimate": null,
+        "receipt": {
+          "id": "attempt-1",
+          "reused": false
+        },
+        "uncertain": false,
+        "error": null
+      },
+      "policy": {
+        "expected_choices": {}
+      },
+      "expected_evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "quality": null
+      }
+    }
+  ]
+}
