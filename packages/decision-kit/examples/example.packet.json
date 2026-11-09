@@ -1,0 +1,73 @@
+{
+  "schema": "brand-evidence-packet/1",
+  "cases": [
+    {
+      "case_id": "fictional-brand-question-01",
+      "stable_id": "fictional-item-01",
+      "task_kind": "brand_attribution",
+      "source_row": {
+        "supplier": "Example Orchard Works",
+        "original_name": "Classic Garden Sauce, 250 ml",
+        "article": "EX-01",
+        "item_package": {
+          "quantity": 250,
+          "unit": "ml",
+          "container": "bottle"
+        },
+        "carton": {
+          "count": 8
+        },
+        "raw_fields": {
+          "brand": null
+        },
+        "source_ref": {
+          "file": "fictional-catalog.xlsx",
+          "sheet": "Products",
+          "row": 3
+        }
+      },
+      "candidates": [
+        {
+          "id": "garden-sauce",
+          "name": "Garden Sauce"
+        },
+        {
+          "id": "riverlight",
+          "name": "Riverlight"
+        },
+        {
+          "id": "meadowvale",
+          "name": "Meadow Vale"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fictional-source-01",
+          "source_type": "OFFICIAL_SITE",
+          "locator": "https://example.invalid/products/fictional-01",
+          "accessed_at": "2030-01-01",
+          "text": "Fictional product catalog entry for a garden sauce.",
+          "scope": "product identity and brand"
+        }
+      ],
+      "accepted_aliases": {
+        "River Light": "Riverlight",
+        "Riverlight": "Riverlight"
+      }
+    }
+  ],
+  "shared_term_facts": [
+    {
+      "term": "Garden Sauce",
+      "role": "product_type",
+      "evidence": {
+        "id": "fictional-source-01",
+        "source_type": "OFFICIAL_SITE",
+        "locator": "https://example.invalid/products/fictional-01",
+        "accessed_at": "2030-01-01",
+        "text": "Fictional product catalog entry for a garden sauce.",
+        "scope": "product identity and brand"
+      }
+    }
+  ]
+}

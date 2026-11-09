@@ -1,3 +1,11 @@
+# Bounded Decisions 0.1.0-preview.5
+
+Adds an optional Python recipe for preparing evidence-backed brand-attribution and term-role questions. Accepted facts, direct source fields and accepted aliases resolve locally; residual model choices are recommendations for human semantic review. Start with the fictional example and offline plan in [the recipe guide](packages/decision-kit/BRAND_EVIDENCE.md).
+
+Python package: `0.1.2rc4`. Shared task/result contracts and provider adapters retain their existing versions.
+
+---
+
 # Bounded Decisions 0.1.0-preview.4
 
 Connect prepared finite-choice tasks from your application to an explicitly selected decision provider. The new universal core has Python and TypeScript entry points, a shared task/result contract and separate adapters for application data and provider APIs.

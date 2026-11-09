@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "decision-kit"
-version = "0.1.2rc3"
+version = "0.1.2rc4"
 description = "Provider-neutral bounded choice decisions"
 readme = "README.md"
 requires-python = ">=3.10"

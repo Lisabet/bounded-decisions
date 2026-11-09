@@ -60,7 +60,7 @@ Default returned-model acceptance requires an exact match. An existing consumer 
 
 ## Choose the runtime
 
-Python `decision-kit 0.1.2rc3` provides provider registration, budget admission, a batch CLI, atomic receipts and resume. TypeScript `bounded-decision-core` provides neutral validation, provider selection and local evaluation. `jev-decision-core` supplies a single Jev transport operation and its adapter. An embedded application's runner supplies durable pending outcomes, attempt identities, budgets and reconciliation.
+Python `decision-kit 0.1.2rc4` provides provider registration, budget admission, a batch CLI, atomic receipts and resume. TypeScript `bounded-decision-core` provides neutral validation, provider selection and local evaluation. `jev-decision-core` supplies a single Jev transport operation and its adapter. An embedded application's runner supplies durable pending outcomes, attempt identities, budgets and reconciliation.
 
 The bundled JSON schemas describe the wire request and operation record. Their canonical copies and synthetic response matrix live here. Each runtime bundles byte-identical copies so installed packages carry the contract. Shared fixtures test the same provider responses and expected records in both runtimes.
 
